@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    const createCounter = function (start, step) {
+        return function () {
+            start += step;
+            return start;
+        }
+    };
+
+    const firstCounter = createCounter(10, 2);
+    /*
+    const obj2324 = {
+        start: 10,
+        step: 2
+    }
+    
+    firstCounter.lexicalEnvironment = {
+        localVariables: obj2324
+    }
+    
+    function func1() {
+    [[Environment]] = obj2324;
+            start += step;
+            return start;
+        }
+      const firstCounter = func1;
+      firstCounter[[Environment]] = obj2324;
+        
+    delete firstCounter.lexicalEnvironment;
+    */
+ 
+    const secondCounter = createCounter(15, 5);
+    /*
+    const obj26624 = {
+        start: 15,
+        step: 5
+    }
+    
+    firstCounter.lexicalEnvironment = {
+        localVariables: obj26624
+    }
+    
+    function func2() {
+            start += step;
+            return start;
+        }
+        firstCounter[[Environment]] = obj26624;
+      const secondCounter = func2;
+      
+        
+    delete firstCounter.lexicalEnvironment;
+    */
+    console.log(firstCounter());
+    /*
+    firstCounter.lexicalEnvironment = {
+        localVariables: {},
+        globalScore: obj2324
+    }
+    obj2324.start += obj2324.step;
+    return obj2324.start;
+    delete firstCounter.lexicalEnvironment;
+    */
+
+    console.log(firstCounter());
+
+    console.log(secondCounter());
+    
+    console.log(secondCounter());
+
+
+</script>
+</body>
+</html>
