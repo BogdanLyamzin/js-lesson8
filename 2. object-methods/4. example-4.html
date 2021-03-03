@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    const coffeeMachine = {
+      coffee: 2000,
+      water: 1500,
+      less: 100,
+      recipes: {
+        "эспрессо": {
+          coffee: 8,
+          water: 20,
+          less: 10
+        },
+        "американо": {
+          coffee: 15,
+          water: 150,
+          less: 30
+        }
+      },
+      makeCoffee(type){
+        const coffeeTypes = Object.keys(this.recipes);
+        if(coffeeTypes.includes(type)){
+            const {coffee, water, less} = this.recipes[type];
+            if(this.coffee < coffee) {
+            return `Добавьте кофе`;
+          } else if(this.water < water) {
+            return `Добавьте воды`;
+          }
+          else if(this.less > 500) {
+            return `Выкиньте жмых`;
+          }
+          this.coffee -= coffee;
+          this.water -= water;
+          this.less += less;
+
+          return `Ваш кофе готов`;          
+        }
+        return `Такой тип кофе я не могу приготовить`;
+      },
+      // makeEspresso(){
+      //   if(this.coffee < 8) {
+      //     return `Добавьте кофе`;
+      //   } else if(this.water < 20) {
+      //     return `Добавьте воды`;
+      //   }
+      //   else if(this.less >= 500) {
+      //     return `Выкиньте жмых`;
+      //   }
+      //   this.coffee -= 8;
+      //   this.water -= 20;
+      //   this.less += 10;
+
+      //   return `Ваш кофе готов`;
+      // },
+      // makeAmericano(){
+      //   if(this.coffee < 15) {
+      //     return `Добавьте кофе`;
+      //   } else if(this.water < 150) {
+      //     return `Добавьте воды`;
+      //   }
+      //   else if(this.less >= 500) {
+      //     return `Выкиньте жмых`;
+      //   }
+      //   this.coffee -= 15;
+      //   this.water -= 150;
+      //   this.less += 30;
+
+      //   return `Ваш кофе готов`;
+      // }
+    };
+
+    const coffeeType = prompt("Какой кофе вы хотите?");
+    console.log(coffeeMachine.makeCoffee(coffeeType));
+    
+  </script>
+</body>
+</html>

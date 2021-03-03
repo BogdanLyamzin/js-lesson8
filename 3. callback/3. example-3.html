@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        const user = {
+            name: "Годрик",
+            lastName: "Гриффиндор",
+            sword: "Годрик Гриффиндор",
+            sallaries: [9000, 15000, 12500],
+            tempSallaries: [],
+            getModifySallaries(func){
+                const newSallaries = [];
+                for (const sallary of Object.values(this.sallaries)) {
+                    const newSallary = func(sallary);
+                    newSallaries.push(newSallary)
+                };
+                return newSallaries;
+            },
+            getFilterSallaries(func){
+              console.log(func)
+              const newSallaries = [];
+                for (const sallary of Object.values(this.sallaries)) {
+                    if(func(sallary)) {
+                      newSallaries.push(sallary)
+                    }
+                };
+                return newSallaries;
+            },
+            getModifyFilterSallaries(callback1, callback2){
+              const modifySallaries = this.getModifySallaries(callback1);
+              this.tempSallaries = this.sallaries; // сохраняем в пустой массив tempSallaries исходные зарплаты
+              this.sallaries = modifySallaries; // вместо исходных зарплат сохраняем массив только что измененных
+              const filterSallaries = this.getFilterSallaries(callback2);
+              this.sallaries = this.tempSallaries; // обратно сохраяем в this.sallaries исходные зарплаты
+              this.tempSallaries = [];
+              return filterSallaries;
+            }
+        };
+
+        const sallariesUSD = user.getModifySallaries((item) => item / 28); 
+        const hightSallaries = user.getFilterSallaries((item)=> item > 14000);
+        const hightSallariesInUSS = user.getModifyFilterSallaries((item) => item / 28, (item)=> item > 300)
+
+    </script>
+</body>
+</html>

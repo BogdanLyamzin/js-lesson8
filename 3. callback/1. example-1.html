@@ -5,6 +5,51 @@
     <title>Title</title>
 </head>
 <body>
+    <script>
 
+        const getTwelveScore = (score) =>  Math.round(score / 12);
+
+        const getFiveScore = (score) =>  Math.round(score / 20);
+
+        const user = {
+            name: "Годрик",
+            lastName: "Гриффиндор",
+            sword: "Годрик Гриффиндор",
+            tabel: {
+                basicMagic: 70,
+                flight: 40,
+                fight: 100
+            },
+            getModifyScores(func){
+                console.log(func)
+                const newTabel = [];
+                for (const value of Object.values(this.tabel)) {
+                    const newValue = func(value);
+                    newTabel.push(newValue)
+                };
+                return newTabel;
+            }
+        };
+
+        const tabelUkraine = user.getModifyScores(getTwelveScore); // var func = getTwelveScore;
+        const tabelFiveScore = user.getModifyScores(getFiveScore); // func = getFiveScore
+       
+
+        // const tabelUkraine = [];
+        // for (const value of Object.values(user.tabel)) {
+        //     const newValue = getTwelveScore(value);
+        //     tabelUkraine.push(newValue)
+        // };
+
+        // console.log(tabelUkraine);
+
+        // const tabelFiveScore = [];
+        // for (const value of Object.values(user.tabel)) {
+        //     const newValue = getFiveScore(value);
+        //     tabelFiveScore.push(newValue)
+        // };
+
+        // console.log(tabelFiveScore);
+    </script>
 </body>
 </html>

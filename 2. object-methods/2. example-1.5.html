@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        const createProduct = function(name, category, basicPrice, count, discount = 0) {
+          const product = {
+            name,
+            category,
+            basicPrice,
+            count,
+            discount
+          };
+
+          product.getPrice = function() {
+            return this.count * this.basicPrice * (1 - this.discount / 100);
+          }
+
+          product.calcDelivery = function(){
+            const orderSum = this.price * this.count;
+                const deliverySum = orderSum * 0.03;
+                if(orderSum >= 2000) {
+                    return 0;
+                }
+                else if(deliverySum < 40) {
+                    return 40;
+                }
+                return deliverySum
+          }
+
+          return product;
+        }
+
+        const createShortProduct = function({name, price}){
+          const shortProduct = {
+            name,
+            price
+          }
+          return shortProduct;
+        };
+
+        const product1 = createProduct("1More Piston Fit Grey", "headphones", 175, 3);
+        const product2 = createProduct("Macbook 15.6", "notebook", 34000, 1, 5);
+
+        console.log(product1.getPrice())
+        console.log(product2.getPrice())
+        // console.log(product1.calcDelivery())
+        // console.log(product2.calcDelivery())
+
+        const productList = [
+          {
+            name: "1More Piston Fit Grey",
+            category: "headphones",
+            price: 175,
+            count: 3
+          },
+          {
+            name: "Macbook 15.6",
+            category: "notebook",
+            price: 34000,
+            count: 1
+          },
+      ]
+
+
+        const shortProduct1 = createShortProduct(productList[0]);
+
+    </script>
+</body>
+</html>

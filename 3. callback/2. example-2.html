@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        const user = {
+            name: "Годрик",
+            lastName: "Гриффиндор",
+            sword: "Годрик Гриффиндор",
+            sallaries: [13000, 15000, 12500],
+            getModifySallaries(func){
+              console.log(func)
+                const newSallaries = [];
+                for (const value of Object.values(this.sallaries)) {
+                    const newValue = func(value);
+                    newSallaries.push(newValue)
+                };
+                return newSallaries;
+            }
+        };
+
+        const sallariesUSD = user.getModifySallaries(function(item){
+          return item / 28
+        }); 
+        /*
+        const tempFunction = function(item){
+          return item / 28
+        }
+         var func = tempFunction;
+         */
+        console.log(sallariesUSD)
+        const sallariesEURO = user.getModifySallaries((item) => item / 33);
+        /*
+        var tempFunc = (item) => item / 33;
+        var func = tempFunc;
+        ....
+
+        delete tempFunc
+
+        */
+    </script>
+</body>
+</html>

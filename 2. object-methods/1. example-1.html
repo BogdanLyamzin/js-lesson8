@@ -6,17 +6,45 @@
 </head>
 <body>
     <script>
+
         const product1 = {
             name: "1More Piston Fit Grey",
             category: "headphones",
-            price: 175
+            price: 175,
+            count: 3,
+            calcDelivery(){
+                const orderSum = this.price * this.count;
+                const deliverySum = orderSum * 0.03;
+                if(orderSum >= 2000) {
+                    return 0;
+                }
+                else if(deliverySum < 40) {
+                    return 40;
+                }
+                return deliverySum
+            }
         };
 
         const product2 = {
             name: "Macbook",
             category: "notebook",
-            price: 34000
+            price: 34000,
+            count: 1,
+            calcDelivery(){
+                const orderSum = this.price * this.count;
+                const deliverySum = orderSum * 0.03;
+                if(orderSum >= 2000) {
+                    return 0;
+                }
+                else if(deliverySum < 40) {
+                    return 40;
+                }
+                return deliverySum
+            }
         };
+
+        console.log(product1.calcDelivery())
+        console.log(product2.calcDelivery())
     </script>
 </body>
 </html>
